@@ -1,0 +1,197 @@
+﻿@model IEnumerable<EatEvals.Models.Review>
+@{
+    ViewData["Title"] = "Reviews";
+}
+@using Microsoft.AspNetCore.Identity
+@using EatEvals.Areas.Identity.Data
+
+@inject SignInManager<RestaurantReviewUser> SignInManager
+@inject UserManager<RestaurantReviewUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="site.css">
+    <style>
+        .background-container {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            background-image: url('../wwwroot/images/food2.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .index-content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .list-container {
+            margin-top: 20px;
+        }
+
+        .modern-search-form {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .modern-search-form select,
+            .modern-search-form input[type="text"],
+            .modern-search-form button {
+                margin-right: 10px;
+            }
+
+            .modern-search-form select {
+                padding: 5px;
+            }
+
+            .modern-search-form input[type="text"] {
+                padding: 5px;
+                flex-grow: 1;
+            }
+
+            .modern-search-form button {
+                padding: 5px 10px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .modern-search-form button:hover {
+                    background-color: #0056b3;
+                }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+
+            .table th.options,
+            .table td.options {
+                width: 150px;
+            }
+
+        .table img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+    <title>EatEvals</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light reviwListHeader">
+            <div class="container">
+                <a class="navbar-brand title" asp-area="" asp-controller="Home" asp-action="Index">EatEvals</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container2">
+        <div class="container1">
+        <div class="index-content">
+            <div class="list-container">
+                    <div class="headerTitleList">
+                        <h4>EatEvals Reviews</h4>
+                </div>
+                <br />
+                <p>
+                    <a asp-action="Create" class="btn btn-primary createNewReviewButton">Create New Review</a>
+                </p>
+
+                <!-- Search -->
+                    <form method="get" action="@Url.Action("Index")" class="modern-search-form">
+                        <select id="searchField" name="searchField" class="form-control">
+                            <option value="" selected disabled hidden>Select Search Field</option>
+                            <option value="RestaurantName">Restaurant Name</option>
+                            <option value="FoodName">Food Name</option>
+                            <option value="PublishingDate">Publishing Date</option>
+                        </select>
+
+                        <input type="text" id="searchQuery" name="searchQuery" class="form-control" placeholder="Enter Search Query" value="@ViewBag.SearchQuery">
+
+                        <button type="submit" name="searchButtonClicked" value="true" class="btn btn-primary">Search</button>
+                        <input type="hidden" name="searchButtonClicked" value="@ViewBag.SearchButtonClicked" />
+                    </form>
+
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <p style="color: red;">@ViewBag.ErrorMessage</p>
+                }
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Restaurant</th>
+                                <th>Food</th>
+                                <th>Price</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                                <th>Image</th>
+                                
+                                <th class="options">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Restaurant)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Food)</td>
+                                        <td>$@Html.DisplayFor(modelItem => item.Price)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Score)</td>
+                                        <td>@item.Date.ToString("yyyy-MM-dd HH:mm")</td>
+                                        <td><img src="@Url.Action("GetImage", new { id = item.Id })" alt="FoodImage" width="100" height="100" /></td>
+                                            <td>
+                                                @if (User?.Identity.Name == "ConestogaCollege.123@gmail.com")
+                                            {
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary margin_bottom">Edit</a>
+                                                 
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6">No results found.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer class="border-top eatEvalsFooterReview">
+        <div class="container">
+            <p class="navbar-brand margin0">EatEvals</p>
+            <p class="navbar-brand margin0">Kashyap Kalathiya | Jay Doshi  | Arshit Sutariya </p>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+

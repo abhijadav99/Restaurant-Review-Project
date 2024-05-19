@@ -1,0 +1,232 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: Roboto,sans-serif;
+}
+
+/*tab navigation*/
+.login-logout-card .card-header {
+    padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+    margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card li.nav-item {
+    width: 50%;
+}
+
+.login-logout-card a.nav-link {
+    font-size: 1rem;
+    color: #495057;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
+
+}
+.containerImage {
+    background-image: url('../images/food1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*height: 100vh;*/
+    overflow: auto;
+}
+.dashboardContainerImage {
+    background-image: url('../images/food4.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /*height: 100vh;*/
+    overflow: auto;
+}
+@media (min-width: 1400px) {
+    .container {
+        max-width: 100%;
+    }
+}
+@media (min-width: 1200px) {
+
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 100%;
+    }
+}
+.justify-content-center {
+     justify-content: start !important; 
+}
+.card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    width: 70%;
+    flex-direction: column;
+    justify-content: start !important;
+    margin-left: 30px !important;
+}
+.mt-5 {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+/*.footer[b-h97rn6c5s2] {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 30px !important;
+    background-color: #233337ba;
+    color: white !important;
+    border: 1px solid #233337ba !important;
+}*/
+.col-10 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+.title {
+    color: white !important;
+    text-decoration: none;
+    font-size: 3rem;
+}
+.title:hover{
+color:red !important;
+}
+.loginNavBar{
+    color:white;
+    font-size:1.5rem;
+    border:0px;
+}
+.abc1 {
+    background-image: url('../images/food1.png');
+    background-repeat: no-repeat;
+}
+.abc2 {
+    background-image: url('../images/food2.jpg');
+    background-repeat: no-repeat;
+}
+.marginTop0 {
+    margin-top: 0px !important;
+}
+.margin0 {
+    margin: 0px !important;
+}
+.margin_bottom{
+    margin-bottom:4px;
+}
+.headerText{
+    color: white !important;
+}
+.restaurantReviewButton {
+    background-color: darkred;
+    color: white !important;
+    margin: auto;
+    padding: 10px;
+}
+.backgroundBlur {
+    background-color: rgb(0 0 0 / 22%);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    width: 40%;
+    padding: 2%;
+    margin: auto;
+}
+.reviewList{
+    background-color:red;
+    padding:10px;
+}
+.createNewReviewButton {
+    background-color: darkred !important;
+    color: white !important;
+    padding: 10px !important;
+    text-align: center;
+    margin-left: 40%;
+}
+
+.eatEvalsFooter {
+    color: #fff !important;
+    text-align: center !important;
+    padding: 10px;
+    /*position: relative !important;*/
+    bottom: 0 !important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color: #4d5a5c94;
+}
+.eatEvalsFooterReview {
+    color: #fff !important;
+    text-align: center !important;
+    padding: 10px;
+    position: relative !important;
+    bottom: 0 !important;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color: #4d5a5c94;
+}
+.headerTitleList {
+    background-image: url(../images/header.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    align-items: center;
+    height: 5rem;
+    display: flex;
+}
+.editHeaderTitleList {
+    background-image: url(../images/headerGreen.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    align-items: center;
+    height: 5rem;
+    display: flex;
+}
+.reviwListHeader {
+    width: 100%;
+    background: black;
+}
+
+.pb-3 {
+    padding-bottom: 1rem !important;
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+.text-muted{
+    color:white !important;
+}
+@media (min-width: 1200px) {
+    .reviwListHeader {
+        max-width: 100%;
+    }
+}

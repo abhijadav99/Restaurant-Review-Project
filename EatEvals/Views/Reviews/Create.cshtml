@@ -1,0 +1,151 @@
+﻿@model EatEvals.Models.Reviewviewmodel
+@{
+    ViewData["Title"] = "Create";
+}
+@using Microsoft.AspNetCore.Identity
+@using EatEvals.Areas.Identity.Data
+
+@inject SignInManager<RestaurantReviewUser> SignInManager
+@inject UserManager<RestaurantReviewUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="site.css">
+    <title>EatEvals</title>
+    <style>
+        /* Custom styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-image: url('../images/restaurant-wordpress-themes1.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container1 {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top:20px;
+        }
+
+        h4 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        hr {
+            margin: 20px 0;
+            border-color: #ddd;
+        }
+
+        label {
+            font-weight: bold;
+            color: #666;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container2">
+    <div class="container1">
+        <h4>Create New Reviews</h4>
+        <hr>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="Restaurant">Restaurant Name</label>
+                <!-- Dropdown list for restaurant names -->
+                <select asp-for="Restaurant" class="form-control" asp-items="@ViewBag.RestaurantNames"></select>
+                <span asp-validation-for="Restaurant" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Food">Food Name</label>
+                <input asp-for="Food" class="form-control" />
+                <span asp-validation-for="Food" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Price">Price</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label for="Price">Score</label>
+                    <input asp-for="Score" class="form-control" />
+                    <span asp-validation-for="Score" class="text-danger"></span>
+                </div>
+
+            <div class="form-group">
+                <label for="Date">Review Date</label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Photo">Photo</label>
+                <input asp-for="Photo" class="form-control" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        <a asp-action="Index" class="back-link">Back to List</a>
+    </div>
+    </div>
+    <footer class="border-top eatEvalsFooter text-muted">
+        <div class="container">
+            <p class="navbar-brand margin0">Kashyap Kalathiya Team - EatEvals</p>
+        </div>
+    </footer>
+</body>
+
+</html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

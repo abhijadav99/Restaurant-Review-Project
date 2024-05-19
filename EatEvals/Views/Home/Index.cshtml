@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using EatEvals.Areas.Identity.Data
+@{
+    ViewData["Title"] = "Home Page";
+}
+@inject UserManager<RestaurantReviewUser> UserManager
+
+<body class="dashboardContainerImage">
+   
+    <div class="text-center backgroundBlur">
+        <h1 class="display-4 headerText">Welcome</h1>
+        <h1 class="display-4 headerText">To</h1>
+        <h1 class="display-4 headerText">EatEvals</h1>
+        <button id="EatEvals" type="submit" class="nav-link btn btn-link text-dark border-0 restaurantReviewButton">Restaurant Reviews</button>
+        <script>
+            document.getElementById("EatEvals").addEventListener("click", function () {
+                window.location.href = '@Url.Action("Index", "Reviews", new { area = "" })';
+            });
+        </script>
+</div>
+    <footer class="border-top eatEvalsFooter text-muted">
+        <div class="container">
+            <p class="navbar-brand margin0">Kashyap Kalathiya Team - EatEvals</p>
+        </div>
+    </footer>
+</body>
